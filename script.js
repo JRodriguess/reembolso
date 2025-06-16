@@ -70,15 +70,24 @@ function expenseAdd(newExpense) {
     expenseCategory.textContent = newExpense.category_name;
 
     //adicionando nome e acategoria a div info
-    expenseInfo.appendChild(expenseName);
-    expenseInfo.appendChild(expenseCategory);
+    expenseInfo.append(expenseName, expenseCategory);
+    
+
+    //criando o valor da despesa
+    const expenseAmount = document.createElement("span");
+    expenseAmount.classList.add("expense-amount");
+    expenseAmount.innerHTML = `<small>R$</small>${newExpense.amount.toUpperCase().replace("R$", "")}`;
+
+    //cria o icone de remocever
+    const removeIcon = document.createElement("img");
+    removeIcon.setAttribute("src", "./img/remove.svg");
+    removeIcon.setAttribute("alt", "Remover despesa");
 
     //adiciona as informações no item
-    expenseItem.appendChild(expenseIcon);
-    expenseItem.appendChild(expenseInfo);
+    expenseItem.append(expenseIcon, expenseInfo, expenseAmount, removeIcon);
 
     //adiciona o item na lista
-    expenseList.appendChild(expenseItem);
+    expenseList.append(expenseItem);
 
   } catch (error) {
     console.error("Erro ao adicionar despesa:", error);
