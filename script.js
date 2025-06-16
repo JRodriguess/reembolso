@@ -42,6 +42,9 @@ form.onsubmit = (event) => {
 function expenseAdd(newExpense) {
   try {
     // Adiciona a nova despesa ao banco de dados
+    // Criando o item de li para adicionar a lista (ul).
+    const expenseItem = document.createElement("li");
+    expenseItem.classList.add("expense");
   } catch (error) {
     console.error("Erro ao adicionar despesa:", error);
     alert("Erro ao adicionar despesa: " + error.message);
