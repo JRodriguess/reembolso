@@ -39,9 +39,9 @@ form.onsubmit = (event) => {
   }
   expenseAdd(newExpense);
 }
-function expenseAdd () {
+function expenseAdd(newExpense) {
   try {
-    
+    // Adiciona a nova despesa ao banco de dados
   } catch (error) {
     console.error("Erro ao adicionar despesa:", error);
     alert("Erro ao adicionar despesa: " + error.message);
