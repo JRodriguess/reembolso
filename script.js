@@ -123,3 +123,14 @@ function updateTotals() {
     alert("Erro ao atualizar totais: " + error.message);
   }
 }
+
+//Eveneto que captura  os intems da lista de despesas
+expenseList.addEventListener("click", (event) => {
+  if (event.target.classList.contains(remove-Icon)) {
+    const expenseItem = event.target.closest(".expense");
+    if (expenseItem) {
+      expenseItem.remove();
+      updateTotals();
+    }
+  }
+});
