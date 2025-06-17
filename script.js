@@ -7,6 +7,7 @@ const category = document.getElementById("category");
 // Selecionar os elementos da lista
 const expenseList = document.querySelector("ul");
 const expenseQuantity = document.querySelector("aside header p span");
+const expenseTotal = document.querySelector("aside header h2 ");
 
 amount.oninput = () => {
   let value = amount.value.replace(/\D/g, "");
@@ -93,6 +94,30 @@ function updateTotals() {
   try {
     const items = expenseList.children;
     expenseQuantity.textContent = `${items.length} ${items.length === 1 ? "despesa" : "despesas"}`;
+
+    let total = 0;
+    for (let item = 0; item < items.length; item++) {
+      const itemAmount = items[item].querySelector(".expense-amount");
+      if (itemAmount) {
+        // Extrai o valor numérico corretamente, considerando vírgula como decimal
+        let value = itemAmount.textContent.replace(/[^\d,]/g, "").replace(",", ".");
+        value = parseFloat(value);
+        if (!isNaN(value)) {
+          total += value;
+        }
+      }
+    }
+    const symbolBRL = document.createElement("small")
+    symbolBRL.textContent = "R$";
+    expenseTotal.textContent = formatCurrencyBRL(total).toUpperCase().replace("R$", "");
+    expenseTotal.appendChild(symbolBRL);
+
+    //limpa 
+    expenseTotal.innerHTML = ""
+
+    //adiciona o símbolo de moeda e o total formatado
+    expenseTotal.append(symbolBRL, total.toFixed(2).replace(".", ","));
+
   } catch (error) {
     console.error("Erro ao atualizar totais:", error);
     alert("Erro ao atualizar totais: " + error.message);
