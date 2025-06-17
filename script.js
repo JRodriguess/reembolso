@@ -83,6 +83,9 @@ function expenseAdd(newExpense) {
     expenseItem.append(expenseIcon, expenseInfo, expenseAmount, removeIcon);
     expenseList.append(expenseItem);
 
+    //limpa os formularios
+    formClear();
+
     updateTotals();
   } catch (error) {
     console.error("Erro ao adicionar despesa:", error);
@@ -134,3 +137,12 @@ expenseList.addEventListener("click", (event) => {
     }
   }
 });
+
+// Função para limpar o formulário
+function formClear() {
+  expense.value = "";
+  category.value = "";
+  amount.value = "";
+
+  expense.focus();
+}
